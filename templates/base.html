@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Muy {% endblock title %}</title>
+	{% include 'snippets/css.html' %}
+</head>
+<body>
+	<h1>Muy Template</h1>
+	<div class="container">
+		{% include 'snippets/nav.html' %}
+		{% include 'snippets/sidebar.html' %}
+		{% block content %}{% endblock content %}
+	</div>
+</body>
+{% include 'snippets/js.html' %}
+</html>

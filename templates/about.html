@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Welcome  {{ block.super }}{%endblock title%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<h1>home2 Hello World</h1>
+	{% if bool_item %}
+	<p>this is{{ num  }} {{ html_var }} file</p>
+	{% endif %}
+
+	<p>
+	{% for item in some_list  %}
+		{% if item|divisibleby:"2" %}
+			Even Number
+		{% endif %}
+		{{ item }}
+		<br>
+	{% endfor %}
+	</p>
+</body>
+</html>
+{% endblock content %}

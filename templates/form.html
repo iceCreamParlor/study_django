@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Restaurant | {{block.super}}  {% endblock title %}
+
+
+{% block content %} 
+<h1>{{title}}</h1>
+{% if errors  %}
+	<p>{{errors}}</p>
+{% endif  %}
+{% includes 'snippets/form-snippet.html'  %}
+{% endblock content %}

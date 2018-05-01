@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Restaurant | {{block.super}}  {% endblock title %}
+
+
+{% block content %} 
+<h1><a href="/restaurants/{{ obj.slug  }}/"> {{ object.name  }}  <small>{{ object.category  }}</small>  </h1>
+<p>{{ object.location  }}</p>
+<p>{{ object.timestamp  }}</p>
+{% endblock content %}
