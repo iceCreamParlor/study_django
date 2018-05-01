@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^password_reset/', PasswordResetView.as_view(), name='password_reset'),    
     url(r'^items/', include('menus.urls', namespace='menus')),
     url(r'^restaurants/', include('restaurant.urls', namespace='restaurants')),
+    url(r'^u/', include('profiles.urls', namespace='profile')),
+
 ]

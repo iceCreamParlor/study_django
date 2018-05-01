@@ -38,3 +38,7 @@ class HealthDiary(models.Model):
     healthclub = models.ForeignKey(HealthClub)
     timestamp = models.DateTimeField(auto_now=True)
 
+class User_Healthclub(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    healthclub = models.ForeignKey(HealthClub)
+    registerdate = models.DateTimeField(auto_now=True)

@@ -102,7 +102,7 @@ class RestaurantDetailView(LoginRequiredMixin, DetailView):
         rest_id = self.kwargs.get('rest_id')
         obj = get_object_or_404(RestaurantLocation, id = rest_id) #pk = rest_id
         return obj
-    def get_object_or_404(self, *args, **kargs):
+    def get_object_or_404(self, *args, **kwargs):
         slug = self.kwargs.get('slug')
         obj = get_object_or_404(RestaurantLocation, slug = slug)
         if not obj:

@@ -7,6 +7,10 @@ from django.core.urlresolvers import reverse
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
+class RestaurantLocationManager(models.Manager):
+    def search(self, query):
+        return self.get_queryset().filter(name__icontains=query)
+
 class RestaurantLocation(models.Model):
     owner  = models.ForeignKey(User) # django models unleashed # class_instance.model_set.all()
     name = models.CharField(max_length=120)
@@ -15,6 +19,8 @@ class RestaurantLocation(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     #my_date_field = models.DateField(auto_now=False, auto_now_add=False)
     slug = models.SlugField(blank=True, null=True)
+
+    objects = RestaurantLocationManager() # add Model.objects.all
 
     def __str__(self):
         return self.name
