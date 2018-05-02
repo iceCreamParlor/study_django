@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3 text-center">
+    <h1>Register</h1>
+    <p>Did you need to <a href="{%url 'login'%}">Login?</a></p>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <input type="submit" value="Register" />
+        <input   type="hidden" name="next" value="{{ next }}" />
+    </form>
+</div>
+<!-- <p><a href="{% url 'password_reset'%}">Lost password?</a></p> -->
+{% endblock %}

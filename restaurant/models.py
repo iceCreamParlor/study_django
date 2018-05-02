@@ -1,13 +1,31 @@
 from django.conf import settings # Using User
 from django.db import models
 from django.db.models.signals import pre_save, post_save
+from django.db.models import Q
 from .utils import unique_slug_generator
 from .validators import validate_category
 from django.core.urlresolvers import reverse
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
+class RestaurantLocationQuerySet(models.query.QuerySet):
+    def search(self, query):
+        if query:
+            query = query.strip() # 공백 없애기
+            return self.filter(
+                Q(name__icontains=query)|
+                Q(location__icontains=query)|
+                Q(category__icontains=query)|
+                Q(category__iexact=query)|
+                Q(location__iexact=query)|
+                Q(item__contents__icontains=query)
+            ).distinct()
+        return self
+
 class RestaurantLocationManager(models.Manager):
+    def get_queryset(self):
+        return RestaurantLocationQuerySet(self.model, using=self._db)
+
     def search(self, query):
         return self.get_queryset().filter(name__icontains=query)
 

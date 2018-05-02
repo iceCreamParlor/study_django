@@ -6,6 +6,11 @@
 {% block content %} 
 
 <h1>{{ user.username }}</h1>
+{% if user.profile in request.user.profile.following.all %}
+    Is Following
+{%endif%}
+<p>{% include 'profiles/snippets/follow_form.html' with username=user.username is_following=True %}</p>
+
 {%if user.item_set.all.exists%}
 <form action="." method="GET" class="form">
     <input type="text" placeholder="Search" name = "q" value = "{{request.GET.q}}">
@@ -23,7 +28,10 @@
             <li>
             {{item.name}}<br>
                 {% for ing in item.get_contents %}
-                <span style="background-color:#ccc">{{ing}},</span>
+                <span style="background-color:#ccc">
+                    <a href="{{request.path}}?q={{ing}}">{{ing}},</a>
+
+                </span>
                 {%endfor%}
             </li>
             {%endfor%}
